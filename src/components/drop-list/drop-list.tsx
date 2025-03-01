@@ -6,15 +6,44 @@ import {
     SelectBox,
     SelectWrapper,
 } from "./drop-list.style";
+import { Status } from "../../lib/types";
 
-const CustomSelect: React.FC = () => {
-    const [selected, setSelected] = useState("Все статусы");
+export type DropDownTypes = Status | "all statuses";
+
+const dropDownElements: { value: DropDownTypes; label: string }[] = [
+    {
+        value: "all statuses",
+        label: "Все статусы",
+    },
+    {
+        value: Status.live,
+        label: "Live",
+    },
+    {
+        value: Status.finished,
+        label: "Finished",
+    },
+    {
+        value: Status.matchPreparing,
+        label: "Match preparing",
+    },
+    {
+        value: Status.scheduled,
+        label: "Scheduled",
+    },
+];
+interface Props {
+    onFilter: (value: DropDownTypes) => void;
+}
+const DropList: React.FC<Props> = ({ onFilter }) => {
+    const [selected, setSelected] = useState<DropDownTypes>("all statuses");
     const [isOpen, setIsOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
 
     const toggleDropdown = () => setIsOpen(!isOpen);
-    const handleSelect = (value: string) => {
+    const handleSelect = (value: DropDownTypes) => {
         setSelected(value);
+        onFilter(value);
         setIsOpen(false);
     };
 
@@ -43,20 +72,18 @@ const CustomSelect: React.FC = () => {
             </SelectBox>
             {isOpen && (
                 <Dropdown>
-                    {["Все статусы", "Live", "Finished", "Match preparing"].map(
-                        (status) => (
-                            <Option
-                                key={status}
-                                onClick={() => handleSelect(status)}
-                            >
-                                {status}
-                            </Option>
-                        )
-                    )}
+                    {dropDownElements.map((status) => (
+                        <Option
+                            key={status.value}
+                            onClick={() => handleSelect(status.value)}
+                        >
+                            {status.label}
+                        </Option>
+                    ))}
                 </Dropdown>
             )}
         </SelectWrapper>
     );
 };
 
-export default CustomSelect;
+export default DropList;

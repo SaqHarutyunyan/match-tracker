@@ -1,8 +1,7 @@
-import React from "react";
+import React, { PropsWithChildren } from "react";
 import { IconWrapper, StyledButton } from "./button.style";
 
 type ButtonProps = {
-    label: string;
     icon?: React.ReactNode;
     variant?: "primary" | "secondary" | "danger";
     disabled?: boolean;
@@ -10,8 +9,8 @@ type ButtonProps = {
     onClick?: () => void;
 };
 
-const Button: React.FC<ButtonProps> = ({
-    label,
+const Button: React.FC<PropsWithChildren<ButtonProps>> = ({
+    children,
     icon,
     variant = "primary",
     disabled = false,
@@ -21,7 +20,7 @@ const Button: React.FC<ButtonProps> = ({
     return (
         <StyledButton variant={variant} disabled={disabled} onClick={onClick}>
             {icon && <IconWrapper>{icon}</IconWrapper>}
-            {label}
+            {children}
         </StyledButton>
     );
 };

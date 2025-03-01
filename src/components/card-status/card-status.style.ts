@@ -1,7 +1,8 @@
 import styled from "styled-components";
+import { Status } from "../../lib/types";
 
 type StyledStatusCardProps = {
-    status: "live" | "finished" | "match-preparing";
+    status: Status;
 };
 
 export const StyledStatusCard = styled.div<StyledStatusCardProps>`
@@ -16,11 +17,11 @@ export const StyledStatusCard = styled.div<StyledStatusCardProps>`
     font-weight: 600;
     ${({ status }) => {
         switch (status) {
-            case "live":
+            case Status.live:
                 return "background: #43AD28; color: #FFFFFF;";
-            case "finished":
+            case Status.finished:
                 return "background: #EB0237; color: #FFFFFF;";
-            case "match-preparing":
+            case Status.matchPreparing:
                 return "background: #EB6402; color: white;";
             default:
                 return "background: blue; color: white;";
