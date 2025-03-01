@@ -4,10 +4,12 @@ import {
     AccardionArrow,
     AccardionDetalis,
     AccardionHeader,
+    AccardionMobileArrow,
     AccordionItemContainer,
     CommandIconContainer,
     CommandName,
     CommandNameContainer,
+    CommandScore,
     ScoreTracker,
 } from "../accardion/accardion.style";
 import CardStatus from "../card-status/card-status";
@@ -24,35 +26,48 @@ function Match({ match, onClick, isExpanded }: Props) {
             <AccardionHeader onClick={() => onClick(match.title)}>
                 <CommandNameContainer>
                     <CommandIconContainer>
-                        <img src="icons/command-icon.png" alt="" />
+                        <img
+                            width={"100%"}
+                            src="icons/command-icon.png"
+                            alt=""
+                        />
                     </CommandIconContainer>
                     <CommandName>{match.homeTeam.name}</CommandName>
                 </CommandNameContainer>
                 <ScoreTracker>
                     <div>
-                        <span>{match.homeScore}</span>
-                        <span>:</span>
-                        <span>{match.awayScore}</span>
+                        <CommandScore>{match.homeScore}</CommandScore>
+                        <CommandScore>:</CommandScore>
+                        <CommandScore>{match.awayScore}</CommandScore>
                     </div>
                     <CardStatus status={match.status} />
                 </ScoreTracker>
                 <CommandNameContainer>
                     <CommandName>{match.awayTeam.name}</CommandName>
                     <CommandIconContainer>
-                        <img src="icons/command-icon.png" alt="" />
+                        <img
+                            width={"100%"}
+                            src="icons/command-icon.png"
+                            alt=""
+                        />
                     </CommandIconContainer>
                     <AccardionArrow open={!!isExpanded}>
-                        <img src="icons/arrowdown.png" alt="" />
+                        <img src="icons/arrowAccardion.png" alt="" />
                     </AccardionArrow>
                 </CommandNameContainer>
             </AccardionHeader>
 
             {isExpanded && (
                 <AccardionDetalis>
-                    <MatchSummary />
-                    <MatchSummary />
+                    <MatchSummary match={match} />
                 </AccardionDetalis>
             )}
+            <AccardionMobileArrow
+                onClick={() => onClick(match.title)}
+                open={!!isExpanded}
+            >
+                <img src="icons/arrowAccardion.png" alt="" />
+            </AccardionMobileArrow>
         </AccordionItemContainer>
     );
 }

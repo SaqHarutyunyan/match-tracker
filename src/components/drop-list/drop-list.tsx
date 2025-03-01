@@ -13,11 +13,11 @@ export type DropDownTypes = Status | "all statuses";
 const dropDownElements: { value: DropDownTypes; label: string }[] = [
     {
         value: "all statuses",
-        label: "Все статусы",
+        label: "All statuses",
     },
     {
         value: Status.live,
-        label: "Live",
+        label: "Ongoing",
     },
     {
         value: Status.finished,
@@ -47,7 +47,6 @@ const DropList: React.FC<Props> = ({ onFilter }) => {
         setIsOpen(false);
     };
 
-    // Click outside to close dropdown
     useEffect(() => {
         const handleClickOutside = (event: MouseEvent) => {
             if (
@@ -65,7 +64,7 @@ const DropList: React.FC<Props> = ({ onFilter }) => {
     return (
         <SelectWrapper ref={dropdownRef}>
             <SelectBox onClick={toggleDropdown}>
-                {selected}
+                {selected.charAt(0).toUpperCase() + selected.slice(1)}
                 <Arrow open={isOpen}>
                     <img src="/icons/arrowdown.png" alt="" />
                 </Arrow>

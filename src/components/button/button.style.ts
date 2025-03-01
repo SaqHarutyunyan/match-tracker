@@ -43,6 +43,9 @@ export const StyledButton = styled.button<StyledButtonProps>`
         cursor: not-allowed;
         background-color: #701328;
     }
+    @media (max-width: 600px) {
+        width: 100%;
+    }
 `;
 
 export const IconWrapper = styled.span`

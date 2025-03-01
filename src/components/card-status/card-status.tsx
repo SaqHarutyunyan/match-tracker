@@ -7,8 +7,6 @@ type CardStatusProps = {
 };
 
 const CardStatus: React.FC<CardStatusProps> = ({ status }) => {
-    console.log(status);
-
     return (
         <StyledStatusCard status={status}>
             {status.charAt(0).toUpperCase() + status.slice(1)}

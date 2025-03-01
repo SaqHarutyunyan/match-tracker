@@ -3,7 +3,10 @@ import styled from "styled-components";
 const SelectWrapper = styled.div`
     min-width: 170px;
     position: relative;
-    font-family: Arial, sans-serif;
+    z-index: 10;
+    @media (max-width: 600px) {
+        width: 100%;
+    }
 `;
 
 const SelectBox = styled.div`

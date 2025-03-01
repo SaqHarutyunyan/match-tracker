@@ -8,6 +8,7 @@ const AccordionContainer = styled.div`
 `;
 
 const AccordionItemContainer = styled.div`
+    gap: 32px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -18,6 +19,10 @@ const AccordionItemContainer = styled.div`
     display: flex;
     background-color: #0b0e12;
     border-radius: 4px;
+    @media (max-width: 600px) {
+        padding: 8px;
+        gap: 16px;
+    }
 `;
 
 const AccardionHeader = styled.div`
@@ -37,6 +42,19 @@ const CommandName = styled.h2`
     font-size: 16px;
     line-height: 20px;
     font-weight: 600;
+    @media (max-width: 600px) {
+        font-size: 14px;
+    }
+`;
+
+const CommandScore = styled.span`
+    font-size: 16px;
+    line-height: 20px;
+    font-weight: 600;
+    margin: 0 5px;
+    @media (max-width: 600px) {
+        font-size: 14px;
+    }
 `;
 
 const CommandIconContainer = styled.div`
@@ -45,6 +63,10 @@ const CommandIconContainer = styled.div`
     display: flex;
     align-items: center;
     gap: 14px;
+    @media (max-width: 600px) {
+        width: 28px;
+        height: 28px;
+    }
 `;
 
 const ScoreTracker = styled.div`
@@ -62,15 +84,33 @@ const AccardionArrow = styled.span.attrs<{ open: boolean }>((props) => ({
     },
 }))`
     transition: transform 0.3s;
+    @media (max-width: 600px) {
+        display: none;
+    }
+`;
+const AccardionMobileArrow = styled.span.attrs<{ open: boolean }>((props) => ({
+    style: {
+        transform: props.open ? "rotate(180deg)" : "rotate(0deg)",
+    },
+}))`
+    transition: transform 0.3s;
+    @media (min-width: 601px) {
+        display: none;
+    }
 `;
 
 const AccardionDetalis = styled.div`
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding: 15px;
     cursor: pointer;
     background-color: #0b0e12;
+    @media (max-width: 600px) {
+        padding: 0;
+    }
 `;
 
 export {
@@ -83,4 +123,6 @@ export {
     AccardionArrow,
     AccardionDetalis,
     AccardionHeader,
+    CommandScore,
+    AccardionMobileArrow,
 };
